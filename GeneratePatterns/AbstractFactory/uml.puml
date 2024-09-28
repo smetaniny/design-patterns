@@ -1,57 +1,135 @@
 @startuml
-title Шаблон "Абстрактная Фабрика"
+title Шаблон "Абстрактная Фабрика" на примере интернет-магазина одежды
 
 top to bottom direction
 
-abstract class AbstractFactory {
-    +createProductA() : AbstractProductA
-    +createProductB() : AbstractProductB
+abstract class DressFactory {
+    // Абстрактный класс для фабрик платьев
+    +createAutumnWomensDress() : WomensDressAbstract  // Создает осеннее женское платье
+    +createSummerWomensDress() : WomensDressAbstract  // Создает летнее женское платье
+    +createSpringWomensDress() : WomensDressAbstract   // Создает весеннее женское платье
 }
+note right of DressFactory
+    Абстрактный класс, определяющий методы
+    для создания различных видов женских платьев.
+end note
 
-class ConcreteFactory1 {
-    +createProductA() : ProductA1
-    +createProductB() : ProductB1
+abstract class SuitFactory {
+    // Абстрактный класс для фабрик костюмов
+    +createWomensSuit() : WomensSuitAbstract           // Создает женский костюм
+    +createMensSuit() : MensSuitAbstract               // Создает мужской костюм
 }
+note right of SuitFactory
+    Абстрактный класс, определяющий методы
+    для создания различных видов костюмов.
+end note
 
-class ConcreteFactory2 {
-    +createProductA() : ProductA2
-    +createProductB() : ProductB2
+class ClothingDressFactory {
+    // Конкретная фабрика для создания платьев
+    +createAutumnWomensDress() : WomensDressAbstract   // Создает осеннее женское платье
+    +createSummerWomensDress() : WomensDressAbstract   // Создает летнее женское платье
+    +createSpringWomensDress() : WomensDressAbstract    // Создает весеннее женское платье
 }
+note right of ClothingDressFactory
+    Конкретная реализация фабрики для создания
+    женских платьев в зависимости от сезона.
+end note
+
+class ClothingSuitFactory {
+    // Конкретная фабрика для создания костюмов
+    +createWomensSuit() : WomensSuitAbstract            // Создает женский костюм
+    +createMensSuit() : MensSuitAbstract                // Создает мужской костюм
+    +createAutumnMensSuit() : MensSuitAbstract          // Создает осенний мужской костюм
+    +createSpringWomensSuit() : WomensSuitAbstract      // Создает весенний женский костюм
+}
+note right of ClothingSuitFactory
+    Конкретная реализация фабрики для создания
+    костюмов в зависимости от сезона и пола.
+end note
 
 class Client {
+    // Клиент, использующий фабрики для создания одежды
 }
+note right of Client
+    Клиентский класс, который взаимодействует с
+    фабриками для создания платьев и костюмов.
+end note
 
-abstract class AbstractProductA {
+abstract class WomensDressAbstract {
+    // Абстрактный класс для всех женских платьев
 }
+note right of WomensDressAbstract
+    Общий интерфейс для всех видов женских платьев.
+end note
 
-class ProductA1 {
+class AutumnWomensDress {
+    // Класс для осеннего женского платья
 }
+note right of AutumnWomensDress
+    Конкретная реализация для осеннего платья.
+end note
 
-class ProductA2 {
+class SpringWomensDress {
+    // Класс для весеннего женского платья
 }
+note right of SpringWomensDress
+    Конкретная реализация для весеннего платья.
+end note
 
-abstract class AbstractProductB {
+class SummerWomensDress {
+    // Класс для летнего женского платья
 }
+note right of SummerWomensDress
+    Конкретная реализация для летнего платья.
+end note
 
-class ProductB1 {
+abstract class MensSuitAbstract {
+    // Абстрактный класс для всех мужских костюмов
 }
+note right of MensSuitAbstract
+    Общий интерфейс для всех видов мужских костюмов.
+end note
 
-class ProductB2 {
+class AutumnMensSuit {
+    // Класс для осеннего мужского костюма
 }
+note right of AutumnMensSuit
+    Конкретная реализация для осеннего костюма.
+end note
 
-AbstractFactory <|-- ConcreteFactory1
-AbstractFactory <|-- ConcreteFactory2
-Client --> AbstractFactory
-AbstractFactory --> AbstractProductA
-AbstractFactory --> AbstractProductB
-AbstractProductA <|-- ProductA1
-AbstractProductA <|-- ProductA2
-AbstractProductB <|-- ProductB1
-AbstractProductB <|-- ProductB2
+class SpringMensSuit {
+    // Класс для весеннего мужского костюма
+}
+note right of SpringMensSuit
+    Конкретная реализация для весеннего костюма.
+end note
 
-ConcreteFactory1 --> ProductA1
-ConcreteFactory1 --> ProductB1
-ConcreteFactory2 --> ProductA2
-ConcreteFactory2 --> ProductB2
+class SummerMensSuit {
+    // Класс для летнего мужского костюма
+}
+note right of SummerMensSuit
+    Конкретная реализация для летнего костюма.
+end note
+
+Client --> DressFactory :           // Клиент использует фабрику платьев
+Client --> SuitFactory   :         // Клиент использует фабрику костюмов
+Client --> WomensDressAbstract :     // Клиент использует абстрактный класс платьев
+Client --> MensSuitAbstract    :    // Клиент использует абстрактный класс костюмов
+
+DressFactory <|-- ClothingDressFactory :  // ClothingDressFactory наследует DressFactory
+SuitFactory <|-- ClothingSuitFactory    : // ClothingSuitFactory наследует SuitFactory
+WomensDressAbstract <|-- AutumnWomensDress :// AutumnWomensDress наследует WomensDressAbstract
+WomensDressAbstract <|-- SpringWomensDress: // SpringWomensDress наследует WomensDressAbstract
+WomensDressAbstract <|-- SummerWomensDress: // SummerWomensDress наследует WomensDressAbstract
+MensSuitAbstract <|-- AutumnMensSuit   :   // AutumnMensSuit наследует MensSuitAbstract
+MensSuitAbstract <|-- SpringMensSuit   :    // SpringMensSuit наследует MensSuitAbstract
+MensSuitAbstract <|-- SummerMensSuit    :   // SummerMensSuit наследует MensSuitAbstract
+
+ClothingDressFactory ..> AutumnWomensDress:   // Фабрика платьев создает осенние платья
+ClothingDressFactory ..> SpringWomensDress :   // Фабрика платьев создает весенние платья
+ClothingDressFactory ..> SummerWomensDress  :  // Фабрика платьев создает летние платья
+ClothingSuitFactory ..> AutumnMensSuit      :  // Фабрика костюмов создает осенние костюмы
+ClothingSuitFactory ..> SpringMensSuit      :  // Фабрика костюмов создает весенние костюмы
+ClothingSuitFactory ..> SummerMensSuit       : // Фабрика костюмов создает летние костюмы
 
 @enduml
