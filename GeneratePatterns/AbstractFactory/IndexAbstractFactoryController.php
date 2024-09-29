@@ -17,7 +17,7 @@ use App\GangOfFourDesignPatterns\GeneratePatterns\AbstractFactory\Factories\Clot
  *
  * @author Smetanin Sergey
  */
-class IndexController
+class IndexAbstractFactoryController
 {
     /**
      * Метод index является точкой входа для демонстрации работы с фабриками одежды.

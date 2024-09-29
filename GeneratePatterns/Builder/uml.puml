@@ -1,0 +1,67 @@
+@startuml
+title Шаблон "Строитель" на примере костюмов
+
+top to bottom direction
+
+abstract class Builder {
+    // Абстрактный класс для строителей
+    +buildJacket() : void  // Метод для сборки пиджака
+    +buildPants() : void   // Метод для сборки брюк
+}
+note right of Builder
+    Абстрактный класс, определяющий методы
+    для создания частей костюма.
+end note
+
+class SuitBuilder {
+    // Конкретный строитель для костюмов
+    +buildJacket() : void  // Реализация метода сборки пиджака для костюма
+    +buildPants() : void   // Реализация метода сборки брюк для костюма
+}
+note right of SuitBuilder
+    Конкретный строитель, который создает
+    части костюма.
+end note
+
+class ClothingDirector {
+    // Директор, управляющий процессом сборки
+    +construct() : void  // Метод для управления процессом сборки костюма
+}
+note right of ClothingDirector
+    Директор, который использует строителей
+    для создания полного костюма.
+end note
+
+abstract class Product {
+    // Абстрактный класс для всех продуктов
+    +getDescription() : String  // Метод для получения описания продукта
+}
+note right of Product
+    Общий интерфейс для всех видов продуктов.
+end note
+
+class Dress {
+    // Конкретная реализация для платья
+    +getDescription() : String  // Получает описание платья
+}
+note right of Dress
+    Конкретная реализация продукта "Платье".
+end note
+
+class Suit {
+    // Конкретная реализация для костюма
+    +getDescription() : String  // Получает описание костюма
+}
+note right of Suit
+    Конкретная реализация продукта "Костюм".
+end note
+
+ClothingDirector --> Builder :            // Директор использует строителей
+Builder <|-- SuitBuilder :                // SuitBuilder наследует Builder
+Product <|-- Dress :                      // Dress наследует Product
+Product <|-- Suit :                       // Suit наследует Product
+
+SuitBuilder ..> Suit :                    // SuitBuilder создает костюм
+SuitBuilder ..> Dress :                   // SuitBuilder может также взаимодействовать с платьем (если нужно)
+
+@enduml
