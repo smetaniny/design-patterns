@@ -1,6 +1,6 @@
 # Паттерн "Строитель"
 
-#### repository pattern Builder (пример паттерна на react)
+### Пример паттерна на react
 https://github.com/smetaniny/react-form-builder <br />
 https://www.npmjs.com/package/smetaniny-react-form-builder
 
