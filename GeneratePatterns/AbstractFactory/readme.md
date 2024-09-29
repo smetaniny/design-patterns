@@ -1,5 +1,9 @@
 # Паттерн "Абстрактная Фабрика"
 
+### Пример паттерна на react
+https://github.com/smetaniny/react-form-builder <br />
+https://www.npmjs.com/package/smetaniny-react-card-abstract-factory
+
 ## Что это такое?
 
 Шаблон "Абстрактная фабрика" предоставляет интерфейс для создания семейств взаимосвязанных объектов без указания их

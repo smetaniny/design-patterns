@@ -1,7 +1,7 @@
 # Паттерн "Строитель"
 
 ### Пример паттерна на react
-https://github.com/smetaniny/react-form-builder <br />
+
 https://www.npmjs.com/package/smetaniny-react-form-builder
 
 Шаблон "Строитель" отделяет процесс создания сложного объекта от его представления, так что один и тот же процесс может
