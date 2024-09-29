@@ -44,7 +44,6 @@
 
 ## Структура
 
-![factory_pattern](uml.puml)
 ![factory_pattern](uml.png)
 
 ```
