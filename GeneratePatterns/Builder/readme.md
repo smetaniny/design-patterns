@@ -1,5 +1,9 @@
 # Шаблон "Строитель"
 
+#### repository pattern Builder (пример паттерна на react)
+https://github.com/smetaniny/react-form-builder <br />
+https://www.npmjs.com/package/smetaniny-react-form-builder
+
 Шаблон "Строитель" отделяет процесс создания сложного объекта от его представления, так что один и тот же процесс может
 использоваться для создания различных представлений объекта. Это позволяет создавать объекты пошагово, постепенно
 добавляя детали.
@@ -140,6 +144,4 @@ Builder/
 гибкость и возможность изменения конфигураций. Однако его использование должно быть обоснованным, чтобы избежать
 избыточной сложности и сделать код более понятным и поддерживаемым.
 
-#### repository pattern Builder (пример паттерна на react)
-https://github.com/smetaniny/react-form-builder
-https://www.npmjs.com/package/smetaniny-react-form-builder
+
