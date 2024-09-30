@@ -1,0 +1,40 @@
+@startuml
+
+title Шаблон "Фабричный метод" для одежды
+
+interface Clothing {
+// Определение интерфейса продукта (одежды)
+    +wear(): void
+}
+
+class Suit implements Clothing {
+// Класс "Костюм", реализующий интерфейс Clothing
+    +wear(): void
+}
+
+class Dress implements Clothing {
+// Класс "Платье", реализующий интерфейс Clothing
+    +wear(): void
+}
+
+abstract class ClothingCreator {
+// Абстрактный создатель одежды
+    +createClothing(): Clothing
+    +someOperation(): void
+}
+
+class SuitCreator extends ClothingCreator {
+// Создатель костюмов
+    +createClothing(): Clothing
+}
+
+class DressCreator extends ClothingCreator {
+// Создатель платьев
+    +createClothing(): Clothing
+}
+
+ClothingCreator --> Clothing : "создаёт"
+SuitCreator --> Suit : "создаёт"
+DressCreator --> Dress : "создаёт"
+
+@enduml
