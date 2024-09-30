@@ -1,4 +1,4 @@
-# Паттерн "Абстрактная Фабрика"
+# Шаблон "Абстрактная Фабрика"
 
 ### Пример паттерна на react
 https://github.com/smetaniny/react-form-builder <br />
