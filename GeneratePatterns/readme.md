@@ -4,132 +4,225 @@
 ```
 /GeneratePatterns
 │
-│   ├── /Factories/                         # Папка с фабриками и абстрактными фабриками
-│   │   ├── AbstractClothingFactory.php     # Абстрактная фабрика для одежды
-│   │   ├── MenClothingFactory.php          # Фабрика для мужской одежды
-│   │   ├── WomenClothingFactory.php        # Фабрика для женской одежды
-│   │   └── SuitFactory.php                 # Фабричный метод для создания костюмов
-│   │
-│   ├── /Builders/                          # Папка с паттернами Строитель
-│   │   ├── SuitBuilder.php                 # Строитель для костюмов
-│   │   └── DressBuilder.php                # Строитель для платьев
-│   │
-│   ├── /Products/                          # Конкретные классы одежды (объекты)
-│   │   ├── Suit.php                        # Класс костюма
-│   │   ├── Dress.php                       # Класс платья
-│   │   ├── CustomSuit.php                  # Класс костюма, созданного через Строитель
-│   │   └── Contracts/                     # Интерфейсы для объектов
-│   │       ├── ClothingItem.php            # Интерфейс для одежды
-│   │       └── ComplexClothingItem.php     # Интерфейс для сложных объектов одежды
-│   │
-│   ├── /Prototypes/                        # Паттерн Прототип для клонирования объектов
-│   │   ├── ClothingPrototype.php           # Абстрактный класс прототипа
-│   │   ├── SuitPrototype.php               # Прототип для костюмов
-│   │   ├── DressPrototype.php              # Прототип для платьев
-│   │   └── PrototypeRegistry.php           # Реестр прототипов для быстрого клонирования
-│   │
-│   ├── /Singletons/                        # Паттерн Синглтон
-│   │   └── ProductCatalogSingleton.php     # Синглтон для каталога продуктов 
+├── /Factories/                         # Папка с фабриками и абстрактными фабриками
+│   ├── AbstractClothingFactory.php     # Абстрактная фабрика для одежды
+│   ├── MenClothingFactory.php          # Фабрика для мужской одежды
+│   ├── WomenClothingFactory.php        # Фабрика для женской одежды
+│   └── SuitFactory.php                 # Фабричный метод для создания костюмов
 │
-│   └── /tests/                             # Тесты для всех компонентов
-│       ├── ClothingFactoryTest.php         # Тесты для абстрактной фабрики и фабричных методов
-│       ├── BuilderTest.php                 # Тесты для паттерна Строитель
-│       ├── PrototypeTest.php               # Тесты для паттерна Прототип
-│       └── SingletonTest.php               # Тесты для паттерна Синглтон
+├── /Builders/                          # Папка с паттернами Строитель
+│   ├── SuitBuilder.php                 # Строитель для костюмов
+│   └── DressBuilder.php                # Строитель для платьев
 │
-└── GeneratePatternsController.php          # Пример использования всех паттернов
+├── /Products/                          # Конкретные классы одежды (объекты)
+│   ├── Suit.php                        # Класс костюма
+│   ├── Dress.php                       # Класс платья
+│   ├── CustomSuit.php                  # Класс костюма, созданного через Строитель
+│   └── Contracts/                      # Интерфейсы для объектов
+│       ├── ClothingItem.php            # Интерфейс для одежды
+│       └── ComplexClothingItem.php     # Интерфейс для сложных объектов одежды
+│
+├── /Prototypes/                        # Паттерн Прототип для клонирования объектов
+│   ├── ClothingPrototype.php           # Абстрактный класс прототипа
+│   ├── SuitPrototype.php               # Прототип для костюмов
+│   ├── DressPrototype.php              # Прототип для платьев
+│   └── PrototypeRegistry.php           # Реестр прототипов для быстрого клонирования
+│
+├── /Singletons/                        # Паттерн Синглтон
+│   └── ProductCatalogSingleton.php     # Синглтон для каталога продуктов 
+│
+└── GeneratePatternsController.php      # Пример использования всех паттернов
 ```
 
-# Порядок реализации классов для проекта по порождающим паттернам
+# Порядок реализации классов для проекта
 
-## 1. Интерфейсы и Базовые классы
-- **`/Products/Contracts/ClothingItem.php`**
-  - Методы:
-    - `getDescription()`
-    - `getPrice()`
-  
-- **`/Products/Contracts/ComplexClothingItem.php`**
-  - Методы:
-    - `getComponents()`
+## Интерфейсы и Базовые классы
 
-## 2. Продукты (Классы одежды)
-- **`/Products/Suit.php`** (класс костюма)
-  - Методы:
-    - `getDescription()`
-    - `getPrice()`
-    - `getComponents()`
+### /Products/Contracts/ClothingItem.php
 
-- **`/Products/Dress.php`** (класс платья)
-  - Методы:
-    - `getDescription()`
-    - `getPrice()`
+Методы:
+- `getDescription()`
+- `getPrice()`
 
-- **`/Products/CustomSuit.php`** (класс кастомного костюма)
-  - Методы:
-    - `getDescription()`
-    - `getPrice()`
-    - `getComponents()`
+### /Products/Contracts/ComplexClothingItem.php
 
-## 3. Фабрики
-- **`/Factories/AbstractClothingFactory.php`** (абстрактная фабрика)
-  - Методы:
-    - `createClothingItem()`
+Методы:
+- `getComponents()`
 
-- **`/Factories/MenClothingFactory.php`** (фабрика для мужской одежды)
-  - Методы:
-    - `createClothingItem()`
+---
 
-- **`/Factories/WomenClothingFactory.php`** (фабрика для женской одежды)
-  - Методы:
-    - `createClothingItem()`
+## Продукты (Классы одежды)
 
-- **`/Factories/SuitFactory.php`** (фабричный метод для создания костюмов)
-  - Методы:
-    - `createSuit()`
+### /Products/Suit.php
 
-## 4. Строители
-- **`/Builders/SuitBuilder.php`** (строитель для костюмов)
-  - Методы:
-    - `createJacket()`
-    - `createTrousers()`
-    - `createVest()`
-    - `getResult()`
+Методы:
+- `getDescription()`
+- `getPrice()`
+- `getComponents()`
 
-- **`/Builders/DressBuilder.php`** (строитель для платьев)
-  - Методы:
-    - `createDress()`
-    - `getResult()`
+### /Products/Dress.php
 
-## 5. Прототипы
-- **`/Prototypes/ClothingPrototype.php`** (абстрактный класс прототипа)
-  - Методы:
-    - `clone()`
+Методы:
+- `getDescription()`
+- `getPrice()`
 
-- **`/Prototypes/SuitPrototype.php`** (прототип для костюмов)
-  - Методы:
-    - `clone()`
+### /Products/CustomSuit.php
 
-- **`/Prototypes/DressPrototype.php`** (прототип для платьев)
-  - Методы:
-    - `clone()`
+Методы:
+- `getDescription()`
+- `getPrice()`
+- `getComponents()`
 
-- **`/Prototypes/PrototypeRegistry.php`** (реестр прототипов)
-  - Методы:
-    - `register()`
-    - `get()`
+---
 
-## 6. Синглтон
-- **`/Singletons/ProductCatalogSingleton.php`** (синглтон для каталога продуктов)
-  - Методы:
-    - `getInstance()`
-    - `addProduct()`
-    - `getProducts()`
+## Фабрики
 
-## 7. Тесты
-- **`/tests/ClothingFactoryTest.php`** (тесты для фабрик)
-- **`/tests/BuilderTest.php`** (тесты для строителей)
-- **`/tests/PrototypeTest.php`** (тесты для прототипов)
-- **`/tests/SingletonTest.php`** (тесты для синглтона)
+### /Factories/AbstractClothingFactory.php
 
-## 8. Контроллер
-- **`GeneratePatternsController.php`** (пример использования всех паттернов)
+Методы:
+- `createClothingItem()`
+
+### /Factories/MenClothingFactory.php
+
+Методы:
+- `createClothingItem()`
+
+### /Factories/WomenClothingFactory.php
+
+Методы:
+- `createClothingItem()`
+
+### /Factories/SuitFactory.php
+
+Методы:
+- `createSuit()`
+
+---
+
+## Строители
+
+### /Builders/SuitBuilder.php
+
+Методы:
+- `createJacket()`
+- `createTrousers()`
+- `createVest()`
+- `getResult()`
+
+### /Builders/DressBuilder.php
+
+Методы:
+- `createDress()`
+- `getResult()`
+
+---
+
+## Прототипы
+
+### /Prototypes/ClothingPrototype.php
+
+Методы:
+- `clone()`
+
+### /Prototypes/SuitPrototype.php
+
+Методы:
+- `clone()`
+
+### /Prototypes/DressPrototype.php
+
+Методы:
+- `clone()`
+
+### /Prototypes/PrototypeRegistry.php
+
+Методы:
+- `register()`
+- `get()`
+
+---
+
+## Синглтон
+
+### /Singletons/ProductCatalogSingleton.php
+
+Методы:
+- `getInstance()`
+- `addProduct()`
+- `getProducts()`
+
+---
+
+## Контроллер
+
+### GeneratePatternsController.php
+
+Методы:
+- `index()` (пример использования всех паттернов)
+- `createProduct()`
+
+---
+
+## Взаимодействие с базой данных
+
+### 1. Фабрики
+
+Фабрики (в директории `/Factories`) будут использоваться для получения объектов одежды. Каждая фабрика будет выполнять выборку из таблицы `products` и возвращать экземпляры классов одежды.
+
+- **`AbstractClothingFactory`**:
+  - **Метод `createClothingItem()`**: Будет отвечать за выборку объекта одежды из таблицы `products` по заданным параметрам (например, ID или атрибутам) и создание экземпляра соответствующего класса.
+
+- **`MenClothingFactory` и `WomenClothingFactory`**:
+  - Эти фабрики будут реализовывать метод `createClothingItem()`, который будет возвращать список продуктов, отфильтрованных по полу (мужская или женская одежда).
+
+- **`SuitFactory`**:
+  - **Метод `createSuit()`**: Будет выполнять выборку данных о костюмах из таблицы `products`, возвращая экземпляры класса `Suit` с полями, загруженными из базы данных.
+
+### 2. Строители
+
+Строители (в директории `/Builders`) могут использоваться для создания сложных объектов одежды из уже существующих компонентов.
+
+- **`SuitBuilder`**:
+  - **Методы `createJacket()`, `createTrousers()`, `createVest()`**: Эти методы могут извлекать соответствующие компоненты костюма из базы данных по заданным критериям и возвращать их в виде экземпляров классов.
+  - **Метод `getResult()`**: Возвращает собранный объект `CustomSuit`, который будет создан из компонентов, выбранных из базы данных.
+
+- **`DressBuilder`**:
+  - **Метод `createDress()`**: Этот метод может извлекать данные о платье из таблицы `products` и создавать объект платья.
+  - **Метод `getResult()`**: Возвращает готовый объект платья.
+
+### 3. Продукты
+
+Продукты (в директории `/Products`) — это конкретные классы одежды, которые будут загружаться из базы данных.
+
+- **`Suit`, `Dress`, `CustomSuit`**:
+  - **Методы `getDescription()` и `getPrice()`**: Будут возвращать описание и цену продукта, которые были загружены из базы данных.
+  - **Метод `loadFromDatabase($id)`**: Загружает информацию о продукте из таблицы `products` по идентификатору, заполняя поля класса данными из базы данных.
+
+### 4. Прототипы
+
+Прототипы (в директории `/Prototypes`) могут использоваться для клонирования существующих объектов.
+
+- **`ClothingPrototype`, `SuitPrototype`, `DressPrototype`**:
+  - **Метод `clone()`**: Позволяет клонировать уже загруженные объекты. Это может быть полезно, когда нужно создать новый объект на основе существующего, не обращаясь к базе данных.
+
+### 5. Синглтон
+
+Синглтон (в директории `/Singletons`) будет обеспечивать доступ к каталогу продуктов для выборки.
+
+- **`ProductCatalogSingleton`**:
+  - **Методы `getInstance()`, `getProducts()`**: Метод `getProducts()` будет выполнять выборку всех доступных продуктов из таблицы `products` и возвращать их в виде массива объектов, которые можно будет использовать в приложении.
+
+### 6. Тесты
+
+Тесты (в директории `/tests`) будут проверять правильность выборки данных.
+
+- **Тесты для фабрик**: Проверяют корректность выборки и создание объектов из таблицы `products`.
+- **Тесты для строителей**: Проверяют правильность извлечения компонентов для создания сложных объектов.
+- **Тесты для прототипов**: Проверяют правильность клонирования объектов.
+- **Тесты для синглтона**: Проверяют правильность получения списка продуктов из базы данных.
+
+### Заключение
+
+Вся логика взаимодействия с базой данных сосредоточена на выборке данных о товарах, которые уже существуют в таблице `products`. Классы и методы позволяют извлекать, фильтровать и обрабатывать данные для дальнейшего использования в приложении, без необходимости их создания или изменения в базе данных.
+
+
