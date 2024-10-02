@@ -5,17 +5,21 @@ namespace App\GangOfFourDesignPatterns\GeneratePatterns\src\Products;
 
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Products\Contracts\ComplexClothingItem;
 
+/**
+ * Класс Suit представляет костюм и реализует интерфейс ComplexClothingItem.
+ * Костюм состоит из нескольких компонентов, таких как пиджак, брюки и жилет.
+ */
 class Suit implements ComplexClothingItem {
     private string $description;
     private float $price;
     private array $components;
 
     /**
-     * Конструктор класса Suit
+     * Конструктор класса Suit.
      *
-     * @param string $description
-     * @param float $price
-     * @param array $components
+     * @param string $description Описание костюма.
+     * @param float $price Цена костюма.
+     * @param array $components Компоненты костюма (например, пиджак, брюки, жилет).
      */
     public function __construct(string $description, float $price, array $components = []) {
         $this->description = $description;
@@ -26,7 +30,7 @@ class Suit implements ComplexClothingItem {
     /**
      * Возвращает описание костюма.
      *
-     * @return string
+     * @return string Описание костюма.
      */
     public function getDescription(): string
     {
@@ -36,7 +40,7 @@ class Suit implements ComplexClothingItem {
     /**
      * Возвращает цену костюма.
      *
-     * @return float
+     * @return float Цена костюма.
      */
     public function getPrice(): float
     {
@@ -46,7 +50,7 @@ class Suit implements ComplexClothingItem {
     /**
      * Возвращает компоненты костюма (например, пиджак, брюки, жилет).
      *
-     * @return array
+     * @return array Компоненты костюма.
      */
     public function getComponents(): array
     {
@@ -56,7 +60,7 @@ class Suit implements ComplexClothingItem {
     /**
      * Добавляет компонент к костюму.
      *
-     * @param string $component
+     * @param string $component Компонент костюма, который нужно добавить (например, аксессуар).
      */
     public function addComponent(string $component): void
     {
