@@ -5,19 +5,36 @@ namespace App\GangOfFourDesignPatterns\GeneratePatterns\src\Builders;
 
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Products\Dress;
 
+/**
+ * Класс DressBuilder реализует паттерн "Строитель" для пошагового создания платья.
+ */
 class DressBuilder {
-    private $dress;
+    private Dress $dress;
 
+    /**
+     * Конструктор инициализирует новый объект платья с базовыми параметрами.
+     */
     public function __construct() {
+        // Инициализация платья с базовым описанием и нулевой ценой.
         $this->dress = new Dress("Собранное платье", 0);
     }
 
-    public function createDress() {
+    /**
+     * Метод для сборки платья, задает описание и цену.
+     */
+    public function createDress(): void {
+        // Устанавливаем описание платья.
         $this->dress->setDescription("Элегантное платье");
+        // Устанавливаем цену платья.
         $this->dress->setPrice(4000);
     }
 
-    public function getResult() {
+    /**
+     * Возвращает результат — готовое платье.
+     *
+     * @return Dress
+     */
+    public function getResult(): Dress {
         return $this->dress;
     }
 }
