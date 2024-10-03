@@ -24,21 +24,21 @@ class SuitBuilder {
      * Добавляет пиджак в костюм.
      */
     public function createJacket(): void {
-        $this->suit->addComponent("Пиджак");
+        $this->suit->addComponent('Пиджак');
     }
 
     /**
      * Добавляет брюки в костюм.
      */
     public function createTrousers(): void {
-        $this->suit->addComponent("Брюки");
+        $this->suit->addComponent('Брюки');
     }
 
     /**
      * Добавляет жилет в костюм.
      */
     public function createVest(): void {
-        $this->suit->addComponent("Жилет");
+        $this->suit->addComponent('Жилет');
     }
 
     /**

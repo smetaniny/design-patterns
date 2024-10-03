@@ -28,7 +28,7 @@ class CustomSuit implements ComplexClothingItem {
      */
     public function getDescription(): string
     {
-        return "Костюм, состоящий из: " . implode(", ", $this->components);
+        return 'Костюм, состоящий из: ' . implode(', ', $this->components);
     }
 
     /**

@@ -1,0 +1,132 @@
+@startuml
+!define AbstractFactory interface
+!define Builder interface
+!define Singleton class
+!define Prototype interface
+
+package GeneratePatterns {
+
+  package Factories {
+    AbstractFactory AbstractClothingFactory {
+      + createClothingItem() : ClothingItem
+    }
+
+    class MenClothingFactory {
+      + createClothingItem() : ClothingItem
+    }
+
+    class WomenClothingFactory {
+      + createClothingItem() : ClothingItem
+    }
+
+    class SuitFactory {
+      + createSuit() : Suit
+    }
+
+    AbstractClothingFactory <|.. MenClothingFactory
+    AbstractClothingFactory <|.. WomenClothingFactory
+    AbstractClothingFactory <|.. SuitFactory
+  }
+
+  package Builders {
+    Builder SuitBuilder {
+      + createJacket() : void
+      + createTrousers() : void
+      + createVest() : void
+      + getResult() : CustomSuit
+    }
+
+    Builder DressBuilder {
+      + createDress() : void
+      + getResult() : Dress
+    }
+  }
+
+  package Products {
+    interface ClothingItem {
+      + getDescription() : string
+      + getPrice() : float
+    }
+
+    interface ComplexClothingItem extends ClothingItem {
+      + getComponents() : list
+    }
+
+    class Suit implements ComplexClothingItem {
+      + getDescription() : string
+      + getPrice() : float
+      + getComponents() : list
+    }
+
+    class Dress implements ClothingItem {
+      + getDescription() : string
+      + getPrice() : float
+    }
+
+    class CustomSuit implements ComplexClothingItem {
+      + getDescription() : string
+      + getPrice() : float
+      + getComponents() : list
+    }
+
+    ClothingItem <|.. ComplexClothingItem
+    ClothingItem <|.. Suit
+    ClothingItem <|.. Dress
+    ClothingItem <|.. CustomSuit
+  }
+
+  package Prototypes {
+    Prototype ClothingPrototype {
+      + clone() : ClothingItem
+    }
+
+    class SuitPrototype {
+      + clone() : Suit
+    }
+
+    class DressPrototype {
+      + clone() : Dress
+    }
+
+    class PrototypeRegistry {
+      + register(ClothingPrototype) : void
+      + get(string) : ClothingPrototype
+    }
+
+    ClothingPrototype <|.. SuitPrototype
+    ClothingPrototype <|.. DressPrototype
+  }
+
+  package Singletons {
+    Singleton ProductCatalogSingleton {
+      + getInstance() : ProductCatalogSingleton
+      + addProduct(ClothingItem) : void
+      + getProducts() : list
+    }
+  }
+
+  class GeneratePatternsController {
+    + index() : void
+    + createProduct() : void
+  }
+
+  GeneratePatternsController --> MenClothingFactory
+  GeneratePatternsController --> WomenClothingFactory
+  GeneratePatternsController --> SuitFactory
+  GeneratePatternsController --> SuitBuilder
+  GeneratePatternsController --> DressBuilder
+  GeneratePatternsController --> ProductCatalogSingleton
+  GeneratePatternsController --> PrototypeRegistry
+
+
+  SuitFactory --> Suit
+  MenClothingFactory --> ClothingItem
+  WomenClothingFactory --> ClothingItem
+  SuitBuilder --> CustomSuit
+  DressBuilder --> Dress
+  SuitPrototype --> Suit
+  DressPrototype --> Dress
+  ProductCatalogSingleton --> ClothingItem
+  PrototypeRegistry --> ClothingPrototype
+}
+@enduml

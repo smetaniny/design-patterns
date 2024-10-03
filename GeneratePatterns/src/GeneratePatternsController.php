@@ -6,6 +6,8 @@ namespace App\GangOfFourDesignPatterns\GeneratePatterns\src;
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Builders\SuitBuilder;
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Factories\MenClothingFactory;
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Factories\WomenClothingFactory;
+use function explode;
+use function trim;
 
 /**
  * Контроллер для демонстрации паттернов (Абстрактная фабрика, Абстрактный метод,
@@ -34,7 +36,12 @@ class GeneratePatternsController
     public function index(): void
     {
         // Разбор URL для извлечения фильтров
-        $filters = $this->extractFiltersFromUrl('catalog/мужской/платье/');
+        $segments = explode('/', trim('catalog/женщинам/платье/', '/'));
+
+        $filters = [
+            'gender' => $segments[1],     // женщинам или мужчинам
+            'clothingType' => $segments[2] // костюм или платье
+        ];
 
         // Определяем фабрику на основе пола
         if ($filters['gender'] === 'женщинам') {
@@ -65,21 +72,4 @@ class GeneratePatternsController
         echo 'Цена продукта: ' . $product->getPrice() . " руб.\n";
     }
 
-    /**
-     * Извлекает фильтры из переданного URL.
-     *
-     * @param string $url URL, содержащий параметры для фильтрации.
-     *
-     * @return array Ассоциативный массив с фильтрами: 'gender' и 'clothingType'.
-     */
-    private function extractFiltersFromUrl(string $url): array
-    {
-        // Разбираем URL, например: catalog/женщинам/платье/
-        $segments = explode('/', trim($url, '/'));
-
-        return [
-            'gender' => $segments[1],     // женщинам или мужчинам
-            'clothingType' => $segments[2] // костюм или платье
-        ];
-    }
 }
