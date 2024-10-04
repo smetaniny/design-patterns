@@ -6,6 +6,7 @@ namespace App\GangOfFourDesignPatterns\GeneratePatterns\src;
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Builders\SuitBuilder;
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Factories\MenClothingFactory;
 use App\GangOfFourDesignPatterns\GeneratePatterns\src\Factories\WomenClothingFactory;
+use App\GangOfFourDesignPatterns\GeneratePatterns\src\Prototypes\DressPrototype;
 use function explode;
 use function trim;
 
@@ -35,41 +36,42 @@ class GeneratePatternsController
      */
     public function index(): void
     {
-        // Разбор URL для извлечения фильтров
         $segments = explode('/', trim('catalog/женщинам/платье/', '/'));
 
         $filters = [
-            'gender' => $segments[1],     // женщинам или мужчинам
-            'clothingType' => $segments[2] // костюм или платье
+            'gender' => $segments[1],
+            'clothingType' => $segments[2]
         ];
 
-        // Определяем фабрику на основе пола
         if ($filters['gender'] === 'женщинам') {
-            // Используем фабрику для создания женской одежды
             $factory = new WomenClothingFactory();
         } else {
-            // Используем фабрику для создания мужской одежды
             $factory = new MenClothingFactory();
         }
 
-        // Определяем, какой тип одежды требуется (платье или костюм)
         if ($filters['clothingType'] === 'костюм') {
-            // Используем строителя для создания костюма
             $builder = new SuitBuilder();
-            // Создаем компоненты костюма
             $builder->createJacket();
             $builder->createTrousers();
             $builder->createVest();
-            // Получаем готовый продукт
             $product = $builder->getResult();
         } else {
-            // Используем фабрику для создания платья
-            $product = $factory->createClothingItem('платье');
+            // Создаем базовое платье
+            $dress = $factory->createClothingItem('платье');
+
+            // Используем прототип для клонирования платья
+            $dressPrototype = new DressPrototype($dress);
+            $clonedDress = $dressPrototype->clone();
+
+            // Изменяем некоторые атрибуты клонированного платья
+            $clonedDress->setPrice(3978); // Устанавливаем новую цену для клона
+
+            // Выводим описание и цену созданного продукта
+            echo 'Описание оригинального платья: ' . $dress->getDescription() . "\n";
+            echo 'Цена оригинального платья: ' . $dress->getPrice() . " руб.\n";
+
+            echo 'Описание клонированного платья: ' . $clonedDress->getDescription() . "\n";
+            echo 'Цена клонированного платья: ' . $clonedDress->getPrice() . " руб.\n";
         }
-
-        // Выводим описание и цену созданного продукта
-        echo 'Описание продукта: ' . $product->getDescription() . "\n";
-        echo 'Цена продукта: ' . $product->getPrice() . " руб.\n";
     }
-
 }

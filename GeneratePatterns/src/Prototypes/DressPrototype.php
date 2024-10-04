@@ -9,13 +9,13 @@ use App\GangOfFourDesignPatterns\GeneratePatterns\src\Products\Dress;
  * Этот класс позволяет клонировать объект платья, не завися от его конкретного типа.
  */
 class DressPrototype extends ClothingPrototype {
-    
+
     /**
      * Экземпляр платья, который будет использоваться в качестве прототипа.
      *
      * @var Dress
      */
-    private $dress;
+    private Dress $dress;
 
     /**
      * Конструктор принимает объект платья, который будет клонироваться.
