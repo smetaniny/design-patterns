@@ -1,0 +1,33 @@
+@startuml
+
+interface Prototype {
+    + clone() : Prototype
+}
+
+class MenSuit {
+    + clone() : Prototype
+}
+
+class WomenSuit {
+    + clone() : Prototype
+}
+
+class WomenDress {
+    + clone() : Prototype
+}
+
+class Client {
+    - prototype : Prototype
+    + createClothes() : void
+}
+
+Client --> Prototype : uses
+Prototype <|-- MenSuit : implements
+Prototype <|-- WomenSuit : implements
+Prototype <|-- WomenDress : implements
+
+MenSuit --> MenSuit : clones itself
+WomenSuit --> WomenSuit : clones itself
+WomenDress --> WomenDress : clones itself
+
+@enduml
