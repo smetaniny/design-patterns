@@ -1,0 +1,35 @@
+@startuml
+class Target {
+    +getSuitDetails(): string
+}
+    note bottom of Target
+    Интерфейс для получения информации о костюмах
+end note
+
+
+class Client {
+    +displaySuitInfo()
+}
+note bottom of Client
+Клиент использует интерфейс Target для отображения информации о костюмах
+end note
+
+class OldClothingSystem {
+    +fetchOldSuitData(): string
+}
+note bottom of OldClothingSystem
+Старая система с несовместимым методом для получения данных о костюмах
+end note
+
+class Adapter {
+    +getSuitDetails(): string
+}
+note bottom of Adapter
+Адаптер, адаптирующий данные от OldClothingSystem
+end note
+
+Client --> Target : Клиент использует интерфейс Target
+Adapter --|> Target : Адаптер наследует интерфейс Target
+Adapter --|> OldClothingSystem : Адаптер наследует интерфейс OldClothingSystem
+
+@enduml
