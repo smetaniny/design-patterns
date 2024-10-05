@@ -52,7 +52,7 @@ https://www.npmjs.com/package/smetaniny-react-form-builder
 
 ## Структура
 
-![factory_pattern](uml.png)
+![uml](uml.png)
 
 ```
 Builder/

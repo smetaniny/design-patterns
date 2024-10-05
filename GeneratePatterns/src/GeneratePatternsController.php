@@ -67,11 +67,11 @@ class GeneratePatternsController
             $clonedDress->setPrice(3978); // Устанавливаем новую цену для клона
 
             // Выводим описание и цену созданного продукта
-            echo 'Описание оригинального платья: ' . $dress->getDescription() . "\n";
-            echo 'Цена оригинального платья: ' . $dress->getPrice() . " руб.\n";
+            echo 'Описание оригинального платья: ' . $dress->getDescription() . '<br />';
+            echo 'Цена оригинального платья: ' . $dress->getPrice() . ' руб.<br />';
 
-            echo 'Описание клонированного платья: ' . $clonedDress->getDescription() . "\n";
-            echo 'Цена клонированного платья: ' . $clonedDress->getPrice() . " руб.\n";
+            echo 'Описание клонированного платья: ' . $clonedDress->getDescription() . '<br />';
+            echo 'Цена клонированного платья: ' . $clonedDress->getPrice() . ' руб.<br />';
         }
     }
 }

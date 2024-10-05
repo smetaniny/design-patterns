@@ -60,7 +60,7 @@
 
 ## Структура
 
-![factory_pattern](uml.png)
+![uml](uml.png)
 
 ```
 └── FactoryMethod

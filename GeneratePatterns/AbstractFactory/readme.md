@@ -48,7 +48,7 @@ https://www.npmjs.com/package/smetaniny-react-card-abstract-factory
 
 ## Структура
 
-![factory_pattern](uml.png)
+![uml](uml.png)
 
 ```
 ── AbstractFactory/
