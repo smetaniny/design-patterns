@@ -21,15 +21,13 @@ note bottom of OldClothingSystem
 Старая система с несовместимым методом для получения данных о костюмах
 end note
 
-class Adapter {
+class ClassAdapter extends OldClothingSystem implements Target {
     +getSuitDetails(): string
 }
-note bottom of Adapter
+note bottom of ClassAdapter
 Адаптер, адаптирующий данные от OldClothingSystem
 end note
 
 Client --> Target : Клиент использует интерфейс Target
-Adapter --|> Target : Адаптер наследует интерфейс Target
-Adapter --|> OldClothingSystem : Адаптер наследует интерфейс OldClothingSystem
 
 @enduml

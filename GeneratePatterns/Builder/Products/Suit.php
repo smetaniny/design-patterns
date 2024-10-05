@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\GangOfFourDesignPatterns\GeneratePatterns\Builder\Products;
 
+use App\GangOfFourDesignPatterns\GeneratePatterns\Builder\Products\Contracts\Product;
+
 /**
  * Класс для представления конечного продукта (костюма).
  *
@@ -12,7 +14,7 @@ namespace App\GangOfFourDesignPatterns\GeneratePatterns\Builder\Products;
  *
  * @author Smetanin Sergey
  */
-class Suit
+class Suit extends Product
 {
     // Переменная для хранения пиджака
     private string $jacket;

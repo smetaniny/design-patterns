@@ -65,21 +65,6 @@ https://www.npmjs.com/package/smetaniny-react-factory-method
 
 ![uml](uml.png)
 
-```
-└── FactoryMethod
-    ├── Clothing
-    │   ├── Contracts
-    │   │   └── Clothing.php            // Интерфейс для одежды
-    │   ├── Dress.php                   // Реализация платья
-    │   └── Suit.php                    // Реализация костюма
-    ├── Creator
-    │   ├── ClothingCreator.php         // Абстрактный создатель
-    │   ├── DressCreator.php            // Конкретный создатель для платья
-    │   └── SuitCreator.php             // Конкретный создатель для костюма
-    └── IndexFactoryMethodController.php // Контроллер для демонстрации
-
-```
-
 ## Отношения
 
 Создатель одежды полагается на свои подклассы в определении фабричного метода, который возвращает экземпляр подходящего

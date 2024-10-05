@@ -13,7 +13,7 @@ note right of Builder
     для создания частей костюма.
 end note
 
-class SuitBuilder {
+class SuitBuilder extends Builder {
     // Конкретный строитель для костюмов
     +buildJacket() : void  // Реализация метода сборки пиджака для костюма
     +buildPants() : void   // Реализация метода сборки брюк для костюма
@@ -40,15 +40,7 @@ note right of Product
     Общий интерфейс для всех видов продуктов.
 end note
 
-class Dress {
-    // Конкретная реализация для платья
-    +getDescription() : String  // Получает описание платья
-}
-note right of Dress
-    Конкретная реализация продукта "Платье".
-end note
-
-class Suit {
+class Suit extends Product {
     // Конкретная реализация для костюма
     +getDescription() : String  // Получает описание костюма
 }
@@ -57,11 +49,6 @@ note right of Suit
 end note
 
 ClothingDirector --> Builder :            // Директор использует строителей
-Builder <|-- SuitBuilder :                // SuitBuilder наследует Builder
-Product <|-- Dress :                      // Dress наследует Product
-Product <|-- Suit :                       // Suit наследует Product
-
-SuitBuilder ..> Suit :                    // SuitBuilder создает костюм
-SuitBuilder ..> Dress :                   // SuitBuilder может также взаимодействовать с платьем (если нужно)
+SuitBuilder --> Suit :                    // SuitBuilder создает костюм
 
 @enduml

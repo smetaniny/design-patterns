@@ -50,39 +50,6 @@ https://www.npmjs.com/package/smetaniny-react-card-abstract-factory
 
 ![uml](uml.png)
 
-```
-── AbstractFactory/
-    ├── Client/
-    │   └── Client.php                                # Клиент, который использует фабрики
-    ├── Factories/
-    │   ├── Contracts/
-    │   │   ├── DressFactory.php                      # Интерфейс фабрики платьев
-    │   │   └── SuitFactory.php                       # Интерфейс фабрики костюмов
-    │   ├── ClothingDressFactory.php                  # Фабрика платьев для всех сезонов
-    │   └── ClothingSuitFactory.php                   # Фабрика костюмов для всех сезонов
-    ├── Products/
-    │   ├── Mens/
-    │   │   ├── Suits/
-    │   │   │   ├── Contracts/
-    │   │   │   │   └── MensSuitAbstract.php          # Абстрактный класс для мужских костюмов
-    │   │   │   ├── AutumnMensSuit.php                # Осенний мужской костюм
-    │   │   │   └── SpringMensSuit.php                # Весенний мужской костюм
-    │   ├── Womens/
-    │   │   ├── Dresses/
-    │   │   │   ├── Contracts/
-    │   │   │   │   └── WomensDressAbstract.php       # Абстрактный класс для женских платьев
-    │   │   │   ├── AutumnWomensDress.php             # Осеннее женское платье
-    │   │   │   ├── SpringWomensDress.php             # Весеннее женское платье
-    │   │   │   └── SummerWomensDress.php             # Летнее женское платье
-    │   │   └── Suits/
-    │   │       ├── Contracts/
-    │   │       │   └── WomensSuitAbstract.php        # Абстрактный класс для женских костюмов
-    │   │       ├── AutumnWomensSuit.php              # Осенний женский костюм
-    │   │       └── SpringWomensSuit.php              # Весенний женский костюм
-    └── IndexController.php                           # Контроллер для обработки запросов (при необходимости)
-
-```
-
 ## Применимость
 
 - Система **не должна зависеть** от того, как создаются, компонуются и представляются входящие в неё объекты одежды.

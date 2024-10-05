@@ -68,15 +68,3 @@ https://www.npmjs.com/package/smetaniny-react-prototype
 
 ![uml](uml.png)
 
-```
-└── Prototype
-    ├── Contracts
-    │   └── Prototype.php                // Интерфейс для прототипа
-    ├── Products
-    │   ├── Client.php                   // Клиент, использующий прототипы
-    │   ├── MenSuit.php                  // Реализация мужского костюма
-    │   ├── WomenDress.php                // Реализация женского платья
-    │   └── WomenSuit.php                 // Реализация женского костюма
-    └── IndexPrototypeController.php      // Контроллер для демонстрации
-
-```

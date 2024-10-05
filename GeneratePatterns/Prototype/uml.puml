@@ -4,15 +4,15 @@ interface Prototype {
     + clone() : Prototype
 }
 
-class MenSuit {
+class MenSuit implements Prototype {
     + clone() : Prototype
 }
 
-class WomenSuit {
+class WomenSuit implements Prototype {
     + clone() : Prototype
 }
 
-class WomenDress {
+class WomenDress implements Prototype {
     + clone() : Prototype
 }
 
@@ -22,9 +22,6 @@ class Client {
 }
 
 Client --> Prototype : uses
-Prototype <|-- MenSuit : implements
-Prototype <|-- WomenSuit : implements
-Prototype <|-- WomenDress : implements
 
 MenSuit --> MenSuit : clones itself
 WomenSuit --> WomenSuit : clones itself

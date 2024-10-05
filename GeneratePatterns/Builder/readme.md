@@ -54,18 +54,6 @@ https://www.npmjs.com/package/smetaniny-react-form-builder
 
 ![uml](uml.png)
 
-```
-Builder/
-├── Builders/
-│   ├── Builder.php         # Абстрактный строитель (интерфейс или абстрактный класс)
-│   └── SuitBuilder.php      # Строитель для костюмов (реализует Builder)
-├── Directors/
-│   └── ClothingDirector.php # Директор, управляющий процессом сборки
-├── Products/
-│   ├── Dress.php           # Продукт: Платье
-└── IndexController.php      # Контроллер для обработки запросов 
-```
-
 ## Применимость
 
 - Алгоритм создания сложного объекта не должен зависеть от того, из каких частей состоит объект и как они стыкуются

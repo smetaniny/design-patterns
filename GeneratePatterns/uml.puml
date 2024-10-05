@@ -5,40 +5,26 @@
 !define Prototype interface
 
 package GeneratePatterns {
-
   package Factories {
-    AbstractFactory AbstractClothingFactory {
+    abstract class AbstractClothingFactory  {
       + createClothingItem() : ClothingItem
     }
 
-    class MenClothingFactory {
+    class MenClothingFactory extends AbstractClothingFactory {
       + createClothingItem() : ClothingItem
     }
 
-    class WomenClothingFactory {
+    class WomenClothingFactory extends AbstractClothingFactory {
       + createClothingItem() : ClothingItem
     }
-
-    class SuitFactory {
-      + createSuit() : Suit
-    }
-
-    AbstractClothingFactory <|.. MenClothingFactory
-    AbstractClothingFactory <|.. WomenClothingFactory
-    AbstractClothingFactory <|.. SuitFactory
   }
 
   package Builders {
-    Builder SuitBuilder {
+    class SuitBuilder {
       + createJacket() : void
       + createTrousers() : void
       + createVest() : void
       + getResult() : CustomSuit
-    }
-
-    Builder DressBuilder {
-      + createDress() : void
-      + getResult() : Dress
     }
   }
 
@@ -68,15 +54,10 @@ package GeneratePatterns {
       + getPrice() : float
       + getComponents() : list
     }
-
-    ClothingItem <|.. ComplexClothingItem
-    ClothingItem <|.. Suit
-    ClothingItem <|.. Dress
-    ClothingItem <|.. CustomSuit
   }
 
   package Prototypes {
-    Prototype ClothingPrototype {
+    abstract ClothingPrototype {
       + clone() : ClothingItem
     }
 
@@ -84,7 +65,7 @@ package GeneratePatterns {
       + clone() : Suit
     }
 
-    class DressPrototype {
+    class DressPrototype extends ClothingPrototype {
       + clone() : Dress
     }
 
@@ -112,20 +93,14 @@ package GeneratePatterns {
 
   GeneratePatternsController --> MenClothingFactory
   GeneratePatternsController --> WomenClothingFactory
-  GeneratePatternsController --> SuitFactory
   GeneratePatternsController --> SuitBuilder
-  GeneratePatternsController --> DressBuilder
   GeneratePatternsController --> ProductCatalogSingleton
   GeneratePatternsController --> PrototypeRegistry
 
 
-  SuitFactory --> Suit
   MenClothingFactory --> ClothingItem
   WomenClothingFactory --> ClothingItem
   SuitBuilder --> CustomSuit
-  DressBuilder --> Dress
-  SuitPrototype --> Suit
-  DressPrototype --> Dress
   ProductCatalogSingleton --> ClothingItem
   PrototypeRegistry --> ClothingPrototype
 }

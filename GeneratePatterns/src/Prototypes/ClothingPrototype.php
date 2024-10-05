@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\GangOfFourDesignPatterns\GeneratePatterns\src\Prototypes;
 
@@ -14,5 +15,5 @@ abstract class ClothingPrototype {
      *
      * @return mixed
      */
-    abstract public function clone();
+    abstract public function clone(): mixed;
 }

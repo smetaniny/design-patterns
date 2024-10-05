@@ -1,0 +1,52 @@
+@startuml
+!define RECTANGLE class
+
+class Client {
+    +main(): void
+}
+
+abstract class ProductDisplay {
+    +showProduct(Product): void
+}
+
+class WebProductDisplay extends ProductDisplay {
+    +showProduct(Product): void
+}
+
+class MobileProductDisplay extends ProductDisplay {
+    +showProduct(Product): void
+}
+
+interface Implementor {
+    +render(): void
+}
+
+class WomenSuit implements Implementor {
+    +render(): void
+}
+
+class MenSuit implements Implementor {
+    +render(): void
+}
+
+class Dress implements Implementor {
+    +render(): void
+}
+
+class Accessory implements Implementor {
+    +render(): void
+}
+
+ProductDisplay o--> Implementor : "1"
+Client --> ProductDisplay : "uses"
+
+note bottom of Client : Клиентский код, использующий абстракцию
+note bottom of ProductDisplay : Базовый класс абстракции для отображения товаров
+note bottom of WebProductDisplay : Уточненная абстракция для отображения на веб-сайте
+note bottom of MobileProductDisplay : Уточненная абстракция для отображения в мобильном приложении
+note bottom of Implementor : Интерфейс для конкретных реализаций товаров
+note bottom of WomenSuit : Конкретная реализация для женских костюмов
+note bottom of MenSuit : Конкретная реализация для мужских костюмов
+note bottom of Dress : Конкретная реализация для платьев
+note bottom of Accessory : Конкретная реализация для аксессуаров
+@enduml
