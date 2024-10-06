@@ -1,0 +1,52 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Product {
+    +getName(): string
+    +getPrice(): float
+    Класс Product является базовым классом для всех товаров в интернет-магазине.\nСодержит методы для получения имени и цены товара.
+}
+
+class Clothing {
+    Класс Clothing наследует от класса Product, становясь специализированной версией товара (одежды).\nСодержит дополнительные методы, специфичные для одежды.
+    +getName(): string
+    +getPrice(): float
+}
+
+class Category {
+    Класс Category может содержать другие категории (например, подкатегории), создавая иерархию категорий.\nТакже содержит экземпляры класса Product, представляя множество товаров (например, рубашки, брюки).
+    +getName(): string
+    +getPrice(): float
+    +add(Product): void
+    +remove(Product): void
+    +getChild(int): Product
+    -children: List<Product>
+}
+
+class ShoppingCart {
+    Корзина покупок клиента. Позволяет добавлять и удалять товары, подсчитывать общую стоимость товаров в корзине.
+    +addProduct(Product): void
+    +removeProduct(Product): void
+    +getTotal(): float
+}
+
+class Customer {
+    Класс Customer управляет жизненным циклом класса ShoppingCart, добавляя и удаляя товары.\nТакже использует классы Product и Category для взаимодействия с товарами и их категориями.
+    +viewCategory(Category): void
+    +addToCart(Product): void
+}
+
+Product <|-- Clothing : Наследование
+
+Category "1" *-- "*" Product : contains - Композиция
+
+Category "1" *-- "*" Category : contains - Композиция
+
+Customer --> Category : uses - Использование
+
+Customer --> Product : uses - Использование
+
+Customer --> ShoppingCart : manages - Управление
+
+
+@enduml
