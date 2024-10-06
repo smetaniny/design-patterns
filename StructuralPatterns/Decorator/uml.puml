@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class  Product {
+    +getDescription(): string
+    +cost(): float
+    Класс Product является базовым классом для всех товаров в интернет-магазине.\nСодержит методы для получения описания и цены товара.
+}
+
+class Clothing extends Product  {
+    Класс Clothing наследует от класса Product, становясь специализированной версией товара (одежды).\nСодержит дополнительные методы, специфичные для одежды.
+    +getDescription(): string
+    +cost(): float
+}
+
+abstract class Decorator extends Product {
+    -component: Product
+    +getDescription(): string
+    +cost(): float
+    Абстрактный класс Decorator содержит ссылку на объект Product и определяет интерфейс, соответствующий Product.
+}
+
+class SizeDecorator extends Decorator {
+    +getDescription(): string
+    Добавляет информацию о размере товара.
+}
+
+class ColorDecorator extends Decorator {
+    +getDescription(): string
+    Добавляет информацию о цвете товара.
+}
+
+class DiscountDecorator extends Decorator {
+    +getDescription(): string
+    +cost(): float
+    Добавляет информацию о скидке на товар и может изменять его цену.
+}
+
+@enduml
