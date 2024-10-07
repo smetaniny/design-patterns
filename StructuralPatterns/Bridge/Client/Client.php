@@ -26,7 +26,8 @@ class Client
      *
      * @return void
      */
-    public function main(): void {
+    public function main(): void
+    {
         // Создаем реализации одежды
         $womenSuit = new WomenSuit(); // Реализация для женских костюмов
         $menSuit = new MenSuit();     // Реализация для мужских костюмов
