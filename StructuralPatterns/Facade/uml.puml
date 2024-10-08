@@ -1,0 +1,39 @@
+@startuml
+title Интернет-магазин одежды (Фасад)
+
+class Customer {
+  Клиент выбирает товар, оформляет заказ и совершает оплату
+  +selectProduct(productId: int)
+  +orderProduct(productId: int, quantity: int)
+  +payForOrder(orderId: int, paymentInfo: PaymentInfo)
+}
+
+class ShopFacade {
+  С помощью фасада клиент может просматривать товары, заказывать их и оплачивать
+  +viewProduct(productId: int)
+  +placeOrder(productId: int, quantity: int)
+  +makePayment(orderId: int, paymentInfo: PaymentInfo)
+}
+
+class ProductCatalog {
+  Предоставляет информацию о товарах (название, цена, описание)
+  +getProductDetails(productId: int)
+}
+
+class OrderSystem {
+  Отвечает за создание заказа, включая товар и его количество
+  +createOrder(productId: int, quantity: int)
+}
+
+class PaymentGateway {
+   Управляет процессом оплаты заказа с использованием информации о платеже
+  +processPayment(orderId: int, paymentInfo: PaymentInfo)
+}
+
+ShopFacade --> ProductCatalog: Делегирует запросы о товарах
+ShopFacade --> OrderSystem: Делегирует запросы на оформление заказа
+ShopFacade --> PaymentGateway: Делегирует запросы на оплату заказа
+
+Customer --> ShopFacade: Взаимодействие через фасад
+
+@enduml
