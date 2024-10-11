@@ -1,0 +1,48 @@
+@startuml
+
+' Определение интерфейса Flyweight (Товар)
+interface ClothingItemFlyweight {
+    Товар
+    + display(size: String, color: String, quantity: int)
+}
+
+' Конкретный Flyweight (Футболка), который реализует интерфейс Flyweight
+class TshirtFlyweight implements ClothingItemFlyweight {
+    Конкретный товар - Футболка
+    - name: String             '  название товара
+    - description: String      '  описание товара
+    - price: float             '  цена товара
+    + display(size: String, color: String, quantity: int) ' Метод отображения товара с учетом внешних параметров (размер, цвет, количество)
+}
+
+' UnsharedConcreteFlyweight (Корзина покупок)
+class ShoppingCartItem {
+    Корзина покупок
+    - flyweight: ClothingItemFlyweight ' Ссылка на товар (Flyweight)
+    - size: String                     '  размер товара
+    - color: String                    '  цвет товара
+    - quantity: int                    '  количество товара
+    + display(): void                  ' Метод отображения данных о товаре в корзине
+}
+
+' Фабрика товаров (FlyweightFactory), управляющая созданием и совместным использованием товаров
+class FlyweightFactory {
+    Фабрика товаров
+    - flyweights: Map<String, ClothingItemFlyweight> ' Коллекция уже созданных объектов товаров
+    + getFlyweight(name: String, description: String, price: float): ClothingItemFlyweight ' Возвращает существующий объект товара или создает новый
+}
+
+' Клиент (Client), добавляющий товары в корзину и взаимодействующий с приспособленцами
+class Client {
+    Пользователь
+    - shoppingCart: List<ShoppingCartItem> ' Список товаров в корзине
+    + addItemToCart(flyweight: ClothingItemFlyweight, size: String, color: String, quantity: int): void ' Добавление товара в корзину
+    + displayCart(): void                  ' Метод отображения всех товаров в корзине
+}
+
+' Взаимосвязи между участниками паттерна
+FlyweightFactory --> ClothingItemFlyweight   : Фабрика создает или возвращает объект Flyweight
+ShoppingCartItem --> ClothingItemFlyweight   : Корзина покупок содержит ссылку на Flyweight (товар)
+Client --> ShoppingCartItem                 : Клиент добавляет товары в корзину
+
+@enduml
