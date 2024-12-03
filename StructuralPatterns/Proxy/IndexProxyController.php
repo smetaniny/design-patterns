@@ -23,7 +23,7 @@ class IndexProxyController
         // Проверка отложенной загрузки
         $this->clientCode($imageProxy);
 
-        echo "\nПовторный вызов display():\n";
+        echo '<br />Повторный вызов display():<br />';
         // Проверка повторного вызова, без повторной загрузки ресурса
         $this->clientCode($imageProxy);
     }
@@ -35,7 +35,7 @@ class IndexProxyController
      */
     public function clientCode(ProductImage $image): void
     {
-        echo "Клиентский код вызывает display():\n";
+        echo 'Клиентский код вызывает display():<br />';
         $image->display();
     }
 }
