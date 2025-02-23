@@ -38,8 +38,8 @@
 
 
 
-Singleton (Одиночка)
-Factory Method (Фабричный метод)
+- Singleton (Одиночка)
+- Factory Method (Фабричный метод)
 Abstract Factory (Абстрактная фабрика)
 Builder (Строитель)
 Prototype (Прототип)
